@@ -1,0 +1,275 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakEasy: Text-to-Speech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Khand&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Khand', sans-serif;
+            background: linear-gradient(180deg, #FEC46C 29%, #D9E86D 54%, #73F2FA 100%);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            
+        }
+        header img {
+            max-width: 200px;
+            height: auto; 
+            margin: 0 auto; 
+            display: block; 
+        }
+  
+        header h1 {
+            font-size: 2em; 
+            margin: 0; 
+            line-height: 1; 
+            color: #031F22; 
+        }
+        header h3 { 
+            color: #031F22; 
+            margin-top: 0.25em; 
+            margin-bottom: 1em; 
+            font-weight: normal; 
+        }
+        header h4 {
+            color: #555; 
+            margin-top: 0
+            margin-bottom: 2em; 
+        }
+        .form-item {
+            margin-bottom: 20px; 
+        }
+        .form-item label {
+            display: block;
+            margin-bottom: 0px; 
+            color: #031F22; 
+            font-weight: light; 
+            text-align: left; 
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0px;
+        }
+        .flex-container .form-item {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .flex-container .form-item:last-child {
+            margin-right: 0;
+        }
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea,
+        input[type="submit"] {
+            width: 100%; 
+            padding: 1.2px; 
+            margin-top: 0px; 
+            font-size: 16px; 
+            font-family: 'Khand', sans-serif;
+            font-weight: normal;
+            line-height: 1.5; 
+            background-color: #8b9892d9;
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            color: white; 
+        }
+        input[type="submit"] {
+            width: 25%;
+            background-color: #031F22; 
+            color: white;
+            padding: 3px;/
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            margin-top: 0px; 
+        }
+        input[type="submit"]:hover {
+            background-color: #FEC46C;
+        }
+        .collapsible {
+            background-color: inherit;
+            color: #031F22;
+            cursor: pointer;
+            font-family: 'Khand', sans-serif;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            position: relative;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .collapsible:after {
+            content: '\003E'; 
+            font-size: 20px;
+            position: absolute;
+            right: 20px; 
+            transition: transform 0.3s; 
+        }
+        .collapsible.active:after {
+            transform: rotate(90deg); 
+        }
+
+        .content {
+            padding: 0px;
+            padding-left: 2px;
+            padding-right: 5px;
+            text-align: left;
+            word-wrap: normal;
+            display: none;
+            overflow: hidden;
+            background-color: inherit;
+            border-radius: 4px;
+            max-width: 370px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="static/images/logo.png" alt="Logo">
+            <h1>SpeakEasy</h1>
+            <h3>Text-to-Speech for Everyone</h4>
+        </header>
+            <form action="{{ url_for('index') }}" method="post">
+            <div class="flex-container">
+                <div class="form-item">
+                    <label for="output_file_name">File Name</label>
+                    <input type="text" id="output_file_name" name="output_file_name" required>
+                </div>
+  
+                <div class="form-item">
+                    <label for="voice_selection">AI Voice</label>
+                    <select id="voice_selection" name="voice_selection" required>
+                        {% for voice in voice_options %}
+                        <option value="{{ voice }}">{{ voice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <label for="api_key">OpenAI API Key</label>
+                <input type="password" id="api_key" name="api_key" required>
+            </div>
+
+            <div class="form-item">
+                <label for="text_to_convert">Paste text to be converted</label>
+                <textarea id="text_to_convert" name="text_to_convert" rows="10" cols="50" required></textarea>
+            </div>
+
+            <input type="submit" value="Run">
+            <div id="statusMessage"></div>
+        </form>
+      <div class="collapsible-container">
+          <button type="button" class="collapsible">How it works</button>
+          <div class="content">
+              <ul>
+                  <li>Step 1: Enter a name for your audio file.</li>
+                  <li>Step 2: Select from one of six AI voices.</li>
+                  <li>Step 3: Paste in your OpenAI API key.</li>
+                  <li>Step 4: Paste in your text from the source.</li>
+                  <li>Step 5: Click the "Run" button.</li>
+                  <li>Step 6: Wait while we generate your audio file.</li>
+                  <li>Step 7: Click the link to download your audio file.</li>
+              </ul>
+          </div>
+
+          <button type="button" class="collapsible">FAQs</button>
+          <div class="content">
+              <ul>
+                  <li><strong>Do I need an account?</strong> SpeakEasy works on an ad hoc basis. No accounts. No subscriptions. Just fast, quality audio when you need it.</li>
+                  <li><strong>How much does it cost?</strong> SpeakEasy is free to use. However, OpenAI will charge you for the audio generation. Each file usually costs a few cents to create.</li>
+                  <li><strong>What happens to my API key and audio file?</strong> We never store your keys or files. When you leave SpeakEasy they do too.</li>
+                  <li><strong>What do I do if I don't have an API key?</strong> You can get one by following these <a href="https://www.codecademy.com/article/creating-an-openai-api-key" target="_blank">instructions</a>.</li>
+                  <li><strong>How do I know which AI voice to use?</strong> You can listen to samples of each voice <a href="https://platform.openai.com/docs/guides/text-to-speech/voice-options" target="_blank">here</a>.</li>
+                  <li><strong>How much text can I convert to audio?</strong> We currently support around 5000 words or about 30 minutes of audio.</li>
+                  <li><strong>What model does this use?</strong> We use the OpenAI tts-1-hd model. This model takes a bit longer to run, but the output quality is worth the wait. </li>
+                  <li><strong>I clicked "Run", is this thing actually working?</strong> Yes. Depending on the amount of text, processing can take anywhere from a few seconds to a few minutes.</li>
+                  <li><strong>What is the quality of the output?</strong> You can listen to some sample outputs <a href="https://haws.notion.site/Audio-Blog-Posts-26d29fb160d1421cb7bf4bf252589347" target="_blank">here</a>.</li>
+                  <li><strong>Can I build my own?</strong> Sure, you can find the code on <a href="https://github.com/brayden-s-haws/speak_easy_text_to_speech" target="_blank">GitHub</a>.</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+    </script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var form = document.querySelector('form');
+            
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                // Show the processing message
+                var statusMessage = document.getElementById("statusMessage");
+                statusMessage.innerText = 'Please wait, your file is being created.';
+                // Send the form data using Fetch or AJAX
+                var formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(() => {
+                    // Start checking for the file's readiness
+                    checkForFile();
+                });
+                // Function to poll the server and check if the file is ready
+                function checkForFile() {
+                    var checkFileReady = setInterval(function() {
+                        fetch("/check-file-ready")
+                        .then(response => response.json())
+                        .then(data => {
+                            if(data.fileReady) {
+                                // If ready, stop the interval and show the success message
+                                clearInterval(checkFileReady);
+                                statusMessage.innerHTML = `<a href="${data.filePath}" download="YourAudioFile.mp3">Success! Click here to download your file.</a>`;  
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error checking file readiness:', error);
+                        });
+                    }, 1000); // check every second
+                }
+            });
+        });
+    </script>
+</body>
+</html>
