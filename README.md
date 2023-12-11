@@ -8,7 +8,7 @@ You can watch a demo of the web app version below and give it a try for yourself
 https://github.com/brayden-s-haws/speak_easy_text_to_speech/assets/58832489/6197b5a9-31e7-403d-8a2d-944034cfba12
 
 ## How It Works
-SpeakEasy takes in a handful of inputs from user and uses those to turn the text they submit into an mp3 audio file. This diagram shows the basic flow:
+SpeakEasy takes in a handful of inputs from the user and uses those to turn the text they submit into an mp3 audio file. This diagram shows the basic flow:
 ![CleanShot Freeform-2023-12-11](https://github.com/brayden-s-haws/speak_easy_text_to_speech/assets/58832489/6ecb436d-03ce-4689-ba3c-54cde170f403)
 
 - User Form - The user fills out the web form to start the process:
@@ -24,7 +24,12 @@ SpeakEasy takes in a handful of inputs from user and uses those to turn the text
 
 ## Files
 
-- **file_name**: 
+#### Flask:
+
+- ** **:
+
+#### Python:
+- ** **:
 
 ## Setup
 
