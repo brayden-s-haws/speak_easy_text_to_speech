@@ -31,7 +31,7 @@ SpeakEasy takes in a handful of inputs from the user and uses those to turn the 
 - **api_processor.py**: This file manages the sending of each text chunk for processing by the API. It also concatenates the files and cleans up the individual files.
 - **index.html**: This file contains all the HTML, CSS, and Javascript required for the frontend. It contains the various display states of the app. Additonally the contexts of the "How it works" and "FAQ" sections are stored here. This file is stored in the templates folder. (Apologies to anyone who has to look at this, frontend is not my strong suit).
 
-In addition to these files the Flask version of the code expects there to be a logo image file stored at static > images. Generated audio files will be stores at static > audio
+In addition to these files the Flask version of the code expects there to be a logo image file stored at static > images. Generated audio files will be stored at static > audio
 
 #### Python:
 - ** **:
