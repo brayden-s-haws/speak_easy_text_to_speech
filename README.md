@@ -10,11 +10,16 @@ https://github.com/brayden-s-haws/speak_easy_text_to_speech/assets/58832489/6197
 SpeakEasy takes in a handful of inputs from user and uses those to turn the text they submit into an mp3 audio file. This diagram shows the basic flow:
 ![CleanShot Freeform-2023-12-11](https://github.com/brayden-s-haws/speak_easy_text_to_speech/assets/58832489/6ecb436d-03ce-4689-ba3c-54cde170f403)
 
-- User Form:
--   Details in the form, including the API key are only stored during the session. Once user navigates away from the page all details are deleted.
-- 
-
-
+- User Form - The user fills out the web form to start the process:
+  - Details in the form, including the API key are only stored during the session. Once user navigates away from the page all details are deleted.
+- Text Processing - The text submitted by the user is processed in a few ways:
+  - Emojis and image references are removed. These can often be included in text when copying and pasting from a source. But we do not want the AI voice reading them outloud.
+  - Paragraph spacing ins removed. The API expects a single string so cleaning up the spacing makes the text easier to handle as we prep it to be sent.
+  - Text is chunked and stored in a list of text chunks. The API character limit is 4096 characters. Text is broken into chunks of approximately 4000 characters to avoid this limit. Chunking is done only on spaces in the text so that a word is not split and sent in two seperate chunks.
+- Audio Processing - The prepared text is sent to the OpenAI TTS API for processing into mp3 format
+  - Each text chunk is sent seperately and the returned MP3 file is stored.
+  - Once all chunks have been processed the files are concatenated and the individual MP3 files are deleted.
+  - The final file is made available to users to download through a link in the UI.
 
 ## Files
 
