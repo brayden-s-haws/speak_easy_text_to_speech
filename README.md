@@ -39,6 +39,6 @@ In addition to these files the Flask version of the code expects there to be a l
 - **api_processor**: This file manages the sending of each text chunk for processing by the API. It also concatenates the files and cleans up the individual files.
 
 ## Setup
-
+The compute demands for this are low since it it just some simple data cleaning and then sending to an API to do the heavy lifting. I deployed the Flask version of this on Replit om their smallest machine size and added some autoscaling back up, in case there is a lot of web traffic. If you dont require a front end or web app you should be able to run the python version locally on almost any machine. This set of commands will install all the required packages: `pip install Flask APScheduler requests openai ffmpeg-python`.
 
 ## Acknowledgements
