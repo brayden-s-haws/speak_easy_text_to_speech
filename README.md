@@ -34,7 +34,9 @@ SpeakEasy takes in a handful of inputs from the user and uses those to turn the 
 In addition to these files the Flask version of the code expects there to be a logo image file stored at static > images. Generated audio files will be stored at static > audio
 
 #### Python:
-- ** **:
+- **user_config.py**: This file contains the required details for converting text to audio. In this version the user enters the needed info into the console and triggers the processing through a key word.
+- **text_processpr**: This file manages all the functions for cleaning and preparing text prior to the API sends. It outputs a dictionary of text chunks that are passed to the API.
+- **api_processor**: This file manages the sending of each text chunk for processing by the API. It also concatenates the files and cleans up the individual files.
 
 ## Setup
 
