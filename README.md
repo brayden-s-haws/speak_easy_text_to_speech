@@ -42,4 +42,4 @@ In addition to these files, the Flask version of the code expects there to be a 
 The compute demands for this are low since it is just some simple data cleaning and then sending to an API to do the heavy lifting. I deployed the Flask version of this on Replit on their smallest machine size and added some autoscaling backup, in case there is a lot of web traffic. If you don't require a front-end or web app you should be able to run the Python version locally on almost any machine. This set of commands will install all the required packages: `pip install Flask APScheduler requests openai ffmpeg-python`.
 
 ## Acknowledgements
-Huge credit goes to @rwjenson for designing the entire UI. Without him, the Flask version wouldn't exist and we would all be running the Python version locally.
+Huge credit goes to [Ryan Jenson](https://github.com/rwjenson) for designing the entire UI. Without him, the Flask version wouldn't exist and we would all be running the Python version locally.
