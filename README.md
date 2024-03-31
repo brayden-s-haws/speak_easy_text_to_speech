@@ -24,24 +24,24 @@ SpeakEasy takes in a handful of inputs from the user and uses those to turn the 
 
 ```Mermaid
 graph TD
-  A[user_config.py] --> B{User Input}
-  B --> C[output_file_name]
-  B --> D[voice_selection]
-  B --> E[api_key]
-  B --> F[text_to_convert]
-  
-  F --> G[text_processor.py]
-  G --> H[remove_emojis]
-  G --> I[remove_image_filenames]
-  G --> J[remove_paragraph_spaces]
-  G --> K[split_text_into_chunks]
-  K --> L[text_dict]
-  
-  L --> M[api_processor.py]
-  M --> N{Iterate through text_dict}
-  N --> O[Generate MP3 for each chunk]
-  O --> P[Concatenate MP3 files]
-  P --> Q[output_file_name_full.mp3]
+    A[user_config.py] --> B{User Input}
+    B --> C[output_file_name]
+    B --> D[voice_selection]
+    B --> E[api_key]
+    B --> F[text_to_convert]
+
+    F --> G[text_processor.py]
+    G --> H[remove_emojis]
+    G --> I[remove_image_filenames]
+    G --> J[remove_paragraph_spaces]
+    G --> K[split_text_into_chunks]
+    K --> L[text_dict]
+
+    L --> M[api_processor.py]
+    M --> N{Iterate through text_dict}
+    N --> O[Generate MP3 for each chunk]
+    O --> P[Concatenate MP3 files]
+    P --> Q[output_file_name_full.mp3]
 ```
 
 ## Files
