@@ -22,7 +22,7 @@ SpeakEasy takes in a handful of inputs from the user and uses those to turn the 
   - Once all chunks have been processed the files are concatenated and the individual MP3 files are deleted.
   - The final file is made available to users to download through a link in the UI.
 
-```Mermaid
+```mermaid
 graph TD
 A[user_config.py] --> B{User Input}
 B --> C[output_file_name]
