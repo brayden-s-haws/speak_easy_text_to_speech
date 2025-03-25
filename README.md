@@ -1,6 +1,6 @@
 # SpeakEasy
 
-#### Current status: complete ####
+#### Current status: Complete
 
 ## Description
 SpeakEasy is a straightforward and easy-to-use text-to-speech tool. It was born out of my desire to convert some of my blog posts into audio format. It was then expanded to support nearly any body of text. It works in a transactional manner, there are no accounts or subscriptions. Users fill in a few details and SpeakEasy does the heavy lifting to process their text into audio using the OpenAI API. The code is available in both Python and Flask versions, depending on whether or not a front end is needed. 
