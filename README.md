@@ -2,6 +2,14 @@
 
 #### Current status: Complete
 
+___
+
+### Personal Progress
+* What I learned: This was my intial venture into HTML, CCS and Javascript. Prior to this I had hacked around needing a frontend by using things like email, slack, or Jupyter notebooks as my "frontend". This taught me how to build a frontend and even change what was displayed on the screen based on the current state of the data processing flow.
+* What I wish I had done differently: Today there is a limit to the length of text you can process. This is not due to a limit with the API but rather in my inability to manage the chunk numbers when there were more than 10 chunks. I wish I had pushed harder to make this work correctly so the inout could essentially be unlimited in length.
+* What I am most proud of: [Lines 59-83](https://github.com/brayden-s-haws/speak_easy_text_to_speech/blob/cd59fed8065d8aaebe9c40d764c293d573900dee/flask/text_processor.py#L69) in text_processor.py. You can only send a limited set of tokens to the API at a time. Initially I was running into issues where words were getting cut in half when being sent to the API and the outputs sounded terrible. This chnage ensured that words were never split in half so the outputs would sound smooth and natural.
+* What I want to learn next: More about frontend development. Specifically how to have a multi-page application and allow users to move between them. I also want to work on user management, so that users can have an account and save their work.
+
 ## Description
 SpeakEasy is a straightforward and easy-to-use text-to-speech tool. It was born out of my desire to convert some of my blog posts into audio format. It was then expanded to support nearly any body of text. It works in a transactional manner, there are no accounts or subscriptions. Users fill in a few details and SpeakEasy does the heavy lifting to process their text into audio using the OpenAI API. The code is available in both Python and Flask versions, depending on whether or not a front end is needed. 
 
@@ -70,10 +78,4 @@ The compute demands for this are low since it is just some simple data cleaning 
 ## Acknowledgements
 Huge credit goes to [Ryan Jenson](https://github.com/rwjenson) for designing the entire UI. Without him, the Flask version wouldn't exist and we would all be running the Python version locally.
 
-___
 
-### Personal Progress
-* What I learned: This was my intial venture into HTML, CCS and Javascript. Prior to this I had hacked around needing a frontend by using things like email, slack, or Jupyter notebooks as my "frontend". This taught me how to build a frontend and even change what was displayed on the screen based on the current state of the data processing flow.
-* What I wish I had done differently: Today there is a limit to the length of text you can process. This is not due to a limit with the API but rather in my inability to manage the chunk numbers when there were more than 10 chunks. I wish I had pushed harder to make this work correctly so the inout could essentially be unlimited in length.
-* What I am most proud of: [Lines 59-83](https://github.com/brayden-s-haws/speak_easy_text_to_speech/blob/cd59fed8065d8aaebe9c40d764c293d573900dee/flask/text_processor.py#L69) in text_processor.py. You can only send a limited set of tokens to the API at a time. Initially I was running into issues where words were getting cut in half when being sent to the API and the outputs sounded terrible. This chnage ensured that words were never split in half so the outputs would sound smooth and natural.
-* What I want to learn next: More about frontend development. Specifically how to have a multi-page application and allow users to move between them. I also want to work on user management, so that users can have an account and save their work.
