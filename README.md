@@ -15,7 +15,7 @@ SpeakEasy is a straightforward and easy-to-use text-to-speech tool. It was born 
 
 SpeakEasy uses the HD version of the text-to-speech API which leads to high-quality outputs, you can hear some sample outputs [here](https://haws.notion.site/Audio-Blog-Posts-26d29fb160d1421cb7bf4bf252589347).
 
-You can watch a demo of the web app version below and give it a try for yourself [here](https://speak-easy.replit.app).
+You can watch a demo of the web app version below.
 
 https://github.com/brayden-s-haws/speak_easy_text_to_speech/assets/58832489/6197b5a9-31e7-403d-8a2d-944034cfba12
 
